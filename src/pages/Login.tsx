@@ -33,40 +33,7 @@ import openLink from '../utils/OpenLink'
 import content from '../common/content'
 
 const LOADER_MESSAGE_TIME = 2500
-const loaderMessages = [
-  {
-    heading: 'Non-custodial buys',
-    text: 'Get sats directly in your wallet with FastBitcoins vouchers',
-    subText: '(*select locations)',
-  },
-  {
-    heading: 'Friends & Family',
-    text:
-      'Add contacts to Hexa and send sats w/o asking for address every time',
-    subText: '',
-  },
-  {
-    heading: 'Hexa Savings Account',
-    text: 'Don’t forget to set up your 2FA code on an authenticator app',
-    subText: '',
-  },
-  {
-    heading: 'Introducing Donation Accounts',
-    text:
-      'Start receiving donations directly in your Hexa Wallet, from anywhere in the world',
-    subText: '',
-  },
-  {
-    heading: 'Satoshis or Sats',
-    text: '1 bitcoin = 100 million satoshis or sats',
-    subText: 'Hexa uses sats to make using bitcoin easier',
-  },
-  {
-    heading: 'Hexa Test Account',
-    text: 'Test Account comes preloaded with test-sats',
-    subText: 'Best place to start if you are new to Bitcoin',
-  },
-]
+const loaderMessages = content.login.loader_messages
 
 const getRandomMessage = () => {
   const randomIndex = Math.floor( Math.random() * 6 )
