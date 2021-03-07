@@ -1,17 +1,92 @@
 {
     "common": {
         "ok": "ok",
+        "to": "to",
+        "verify": "verify",
+        "login": "login",
+        "and": "and",
+        "passcode": "passcode"
+    },
+    "button": {
         "proceed": "Proceed",
         "continue": "Continue",
         "done": "Done",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "confirm_and_proceed": "Confirm & Proceed"
     },
     "login": {
+        "hello": "Hello!",
+        "please_enter_a": "Please enter a ",
+        "reenter_the": "Re-enter the ",
+        "login_and_verify": " verify and login.",
         "welcome": "Welcome back!",
-        "enter_your": "Please enter your ",
-        "passcode": "passcode",
+        "please_enter": "Please enter your ",
+        "incorrect_passcode": "Incorrect Passcode, Try Again!",
         "tos": "Terms of Service",
-        "tos_agree": "By proceeding to the next step, you agree to our "
+        "tos_agree": "By proceeding to the next step, you agree to our ",
+        "loader_messages": [
+            {
+                "heading": "Non-custodial buys",
+                "text": "Get sats directly in your wallet with FastBitcoins vouchers",
+                "subText": "(*select locations)"
+            },
+            {
+                "heading": "Friends & Family",
+                "text": "Add contacts to Hexa and send sats w/o asking for address every time",
+                "subText": ""
+            },
+            {
+                "heading": "Hexa Savings Account",
+                "text": "Don’t forget to set up your 2FA code on an authenticator app",
+                "subText": ""
+            },
+            {
+                "heading": "Introducing Donation Accounts",
+                "text": "Start receiving donations directly in your Hexa Wallet, from anywhere in the world",
+                "subText": ""
+            },
+            {
+                "heading": "Satoshis or Sats",
+                "text": "1 bitcoin = 100 million satoshis or sats",
+                "subText": "Hexa uses sats to make using bitcoin easier"
+            },
+            {
+                "heading": "Hexa Test Account",
+                "text": "Test Account comes preloaded with test-sats",
+                "subText": "Best place to start if you are new to Bitcoin"
+            }
+        ]
+    },
+    "wallet_setup" :{
+        "new": "New Hexa Wallet",
+        "please_enter_a": "Please enter a ",
+        "display_name":"display name.",
+        "your_contacts_will":"your contacts will see this",
+        "enter_display":"Enter display name",
+        "no_number":"No numbers or special characters allowed",
+        "we_do_not":"We do not store this",
+        "this_is_used_during":"This is used during communication with your contacts",
+        "setup": "Setup ",
+        "secret_question" : "secret question and answer",
+        "setup_messages": [
+            {
+                "heading": "Creating your wallet",
+                "text": "The Hexa wallet is non-custodial and is created locally on your phone so that you have full control of it"
+
+            },
+            {
+                "heading": "Bootstrapping Accounts",
+                "text": "Hexa has a multi-account model which lets you better manage your Bitcoin (sats)"
+            },
+            {
+                "heading": "Filling Test Account with test sats",
+                "text": "Preloaded Test Account is the best place to start your Bitcoin journey"
+            },
+            {
+                "heading": "Generating Recovery Keys",
+                "text": "Recovery Keys help you restore your Hexa wallet in case your phone is lost"
+            }
+        ]
     },
     "home": {
         "the_wallet_backup": "The wallet backup is ",
