@@ -25,17 +25,18 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import DeviceInfo from 'react-native-device-info'
 import HeaderTitle from '../components/HeaderTitle'
 import BottomInfoBox from '../components/BottomInfoBox'
+import content from '../common/content'
 
 export default function NewWalletName( props ) {
   const [ walletName, setWalletName ] = useState( '' )
   const [ inputStyle, setInputStyle ] = useState( styles.inputBox )
   return (
     <SafeAreaView style={{
-      flex: 1 
+      flex: 1
     }}>
       <StatusBar backgroundColor={Colors.white} barStyle="dark-content" />
       <View style={{
-        flex: 1 
+        flex: 1
       }}>
         <View style={CommonStyles.headerContainer}>
           <TouchableOpacity
@@ -55,22 +56,22 @@ export default function NewWalletName( props ) {
         </View>
         <KeyboardAvoidingView
           style={{
-            flex: 1 
+            flex: 1
           }}
           behavior={Platform.OS == 'ios' ? 'padding' : ''}
           enabled
         >
           <ScrollView>
             <HeaderTitle
-              firstLineTitle={'New Hexa Wallet'}
+              firstLineTitle={content.wallet_setup.new}
               secondLineTitle={''}
-              infoTextNormal={'Please enter a '}
-              infoTextBold={'display name.'}
-              infoTextNormal1={'Your contacts will see this'}
+              infoTextNormal={content.wallet_setup.please_enter_a}
+              infoTextBold={content.wallet_setup.display_name}
+              infoTextNormal1={content.wallet_setup.your_contacts_will}
             />
             <TextInput
               style={inputStyle}
-              placeholder={'Enter display name'}
+              placeholder={content.wallet_setup.enter_display}
               placeholderTextColor={Colors.borderColor}
               value={walletName}
               keyboardType={
@@ -90,12 +91,12 @@ export default function NewWalletName( props ) {
               autoCorrect={false}
               autoCompleteType="off"
             />
-            <View style={{ 
-              marginLeft: 20, 
+            <View style={{
+              marginLeft: 20,
             }}>
-              <Text style={{ 
+              <Text style={{
                 fontSize: RFValue( 12 ),
-                fontFamily: Fonts.FiraSansRegular, color: Colors.textColorGrey, 
+                fontFamily: Fonts.FiraSansRegular, color: Colors.textColorGrey,
               }}>
                   No numbers or special characters allowed</Text>
             </View>
@@ -109,7 +110,7 @@ export default function NewWalletName( props ) {
                   shadowColor: Colors.shadowBlue,
                   shadowOpacity: 1,
                   shadowOffset: {
-                    width: 15, height: 15 
+                    width: 15, height: 15
                   },
                 }}
               >
@@ -133,13 +134,11 @@ export default function NewWalletName( props ) {
 
           {walletName.trim() == '' ? (
             <View style={{
-              marginBottom: DeviceInfo.hasNotch ? hp( '3%' ) : 0 
+              marginBottom: DeviceInfo.hasNotch ? hp( '3%' ) : 0
             }}>
               <BottomInfoBox
-                title={'We do not store this'}
-                infoText={
-                  'This is used during your communication with your contacts'
-                }
+                title={content.wallet_setup.we_do_not}
+                infoText={content.wallet_setup.this_is_used_during}
               />
             </View>
           ) : null}
@@ -192,7 +191,7 @@ const styles = StyleSheet.create( {
     shadowColor: Colors.borderColor,
     shadowOpacity: 10,
     shadowOffset: {
-      width: 2, height: 2 
+      width: 2, height: 2
     },
     backgroundColor: Colors.white,
     fontFamily: Fonts.FiraSansRegular,
