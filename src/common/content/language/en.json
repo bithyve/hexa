@@ -59,6 +59,11 @@
     },
     "wallet_setup" :{
         "new": "New Hexa Wallet",
+        "first_time": "If this is your first time using Hexa on this device",
+        "create":"Create a new wallet",
+        "restore": "Restore Wallet",
+        "if_restore":"If you would like to restore an existing Hexa Wallet",
+        "using_recovery":"Using Recovery Keys",
         "please_enter_a": "Please enter a ",
         "display_name":"display name.",
         "your_contacts_will":"your contacts will see this",

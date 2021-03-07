@@ -18,23 +18,22 @@ import Colors from '../common/Colors'
 import { RFValue } from 'react-native-responsive-fontsize'
 import BottomInfoBox from '../components/BottomInfoBox'
 import openLink from '../utils/OpenLink'
+import content from '../common/content'
 
 const WalletInitializationScreen = props => {
   return (
     <SafeAreaView style={{
-      flex: 1 
+      flex: 1
     }}>
       <StatusBar backgroundColor={Colors.white} barStyle="dark-content" />
       <View style={{
-        flex: 1 
+        flex: 1
       }}>
         <View style={{
-          ...styles.viewSetupWallet, paddingTop: wp( '10%' ) 
+          ...styles.viewSetupWallet, paddingTop: wp( '10%' )
         }}>
-          <Text style={styles.headerTitleText}>New Hexa Wallet</Text>
-          <Text style={styles.headerInfoText}>
-            If this is your first time using Hexa on this device
-          </Text>
+          <Text style={styles.headerTitleText}>{content.wallet_setup.new}</Text>
+          <Text style={styles.headerInfoText}>{content.wallet_setup.first_time}</Text>
           <TouchableOpacity
             onPress={() => props.navigation.navigate( 'NewWalletName' )}
             style={styles.NewWalletTouchableView}
@@ -44,9 +43,7 @@ const WalletInitializationScreen = props => {
               source={require( '../assets/images/icons/icon_newwallet.png' )}
             />
             <View style={styles.textView}>
-              <Text style={styles.touchableText}>
-                Create a new wallet
-              </Text>
+              <Text style={styles.touchableText}>{content.wallet_setup.create}</Text>
             </View>
             <View style={styles.arrowIconView}>
               <Ionicons
@@ -54,7 +51,7 @@ const WalletInitializationScreen = props => {
                 color={Colors.textColorGrey}
                 size={15}
                 style={{
-                  alignSelf: 'center' 
+                  alignSelf: 'center'
                 }}
               />
             </View>
@@ -62,12 +59,10 @@ const WalletInitializationScreen = props => {
         </View>
         <View style={styles.separator} />
         <View style={{
-          ...styles.viewSetupWallet, paddingTop: wp( '10%' ) 
+          ...styles.viewSetupWallet, paddingTop: wp( '10%' )
         }}>
-          <Text style={styles.headerTitleText}>Restore Wallet</Text>
-          <Text style={styles.headerInfoText}>
-            If you would like to restore an existing Hexa Wallet
-          </Text>
+          <Text style={styles.headerTitleText}>{content.wallet_setup.restore}</Text>
+          <Text style={styles.headerInfoText}>{content.wallet_setup.if_restore}</Text>
           <TouchableOpacity
             onPress={async () => {
               if ( await AsyncStorage.getItem( 'recoveryExists' ) ) {
@@ -88,7 +83,7 @@ const WalletInitializationScreen = props => {
               source={require( '../assets/images/icons/icon_secrets.png' )}
             />
             <View style={styles.textView}>
-              <Text style={styles.touchableText}>Using Recovery Keys</Text>
+              <Text style={styles.touchableText}>{content.wallet_setup.using_recovery}</Text>
             </View>
             <View style={styles.arrowIconView}>
               <Ionicons
@@ -96,7 +91,7 @@ const WalletInitializationScreen = props => {
                 color={Colors.textColorGrey}
                 size={15}
                 style={{
-                  alignSelf: 'center' 
+                  alignSelf: 'center'
                 }}
               />
             </View>
@@ -104,17 +99,15 @@ const WalletInitializationScreen = props => {
         </View>
         <View style={styles.separator} />
         <View style={{
-          flex: 1 
+          flex: 1
         }}>
           <View style={{
-            marginTop: 'auto' 
+            marginTop: 'auto'
           }}>
             <BottomInfoBox
-              title={'Terms of Service'}
-              infoText={
-                'By proceeding to the next step, you agree to our '
-              }
-              linkText={'Terms of Service'}
+              title={content.login.tos}
+              infoText={content.login.tos_agree}
+              linkText={content.login.tos}
               onPress={() => openLink( 'https://hexawallet.io/terms-of-service/' )}
             />
           </View>
