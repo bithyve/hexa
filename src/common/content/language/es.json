@@ -1,17 +1,53 @@
 {
     "common": {
         "ok": "okay",
-        "proceed": "Continuar",
+        "to": "para",
+        "verify": "verify",
+        "login": "login",
+        "and": "and",
+        "passcode": "contraseña"
+    },
+    "button": {
+        "proceed": "Proceder",
         "continue": "Seguir",
         "done": "Hecho",
-        "cancel": "Cancelar"
+        "cancel": "Cancelar",
+        "confirm_and_proceed": "Confirmar y Proceder"
     },
     "login": {
-        "welcome": "¡Dar una buena acogida!",
-        "enter_your": "Por favor ingrese su ",
-        "passcode": "contraseña",
+        "hello": "¡Hola!",
+        "please_enter_a": "Por favor introduce una ",
+        "reenter_the": "Reintroduce la ",
+        "login_and_verify": " verificar e iniciar sesión.",
+        "welcome": "¡Bienvenido de vuelta!",
+        "please_enter": "Por favor ingrese su ",
+        "incorrect_passcode": "Contraseña incorrecta. ¡Intenta de nuevo!",
         "tos": "Términos de servicio",
         "tos_agree": "Al continuar con el siguiente paso, acepta nuestros "
+    },
+    "wallet_setup": {
+        "new": "Nueva cartera Hexa",
+        "setup": "Configura ",
+        "secret_question": "la pregunta secreta y responde",
+        "setup_messages": [
+            {
+                "heading": "Creando tu cartera",
+                "text": "La cartera Hexa no te priva de libertad. Se crea de manera local en tu teléfono para tengas control total de ella"
+
+            },
+            {
+                "heading": "Arrancando Cuentas",
+                "text": "Hexa tiene un modelo de cuentas múltiples que te permite gestionar tus bitcoins (sats) de mejor manera"
+            },
+            {
+                "heading": "Llenando Cuenta de Prueba con sats",
+                "text": "Precargado Test Account es el mejor lugar para empezar tu viaje hacia los Bitcoins"
+            },
+            {
+                "heading": "Generando Llaves de Recuperación",
+                "text": "Las llaves de recuperación te permiten recuperar tu teléfono en caso de que pierdas tu teléfono."
+            }
+        ]
     },
     "home": {
         "the_wallet_backup": "La copia de seguridad de la billetera ",
