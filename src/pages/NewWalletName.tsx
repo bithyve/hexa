@@ -97,8 +97,7 @@ export default function NewWalletName( props ) {
               <Text style={{
                 fontSize: RFValue( 12 ),
                 fontFamily: Fonts.FiraSansRegular, color: Colors.textColorGrey,
-              }}>
-                  No numbers or special characters allowed</Text>
+              }}>{content.wallet_setup.no_number}</Text>
             </View>
           </ScrollView>
 
@@ -122,7 +121,7 @@ export default function NewWalletName( props ) {
                   }}
                   style={styles.buttonView}
                 >
-                  <Text style={styles.buttonText}>Continue</Text>
+                  <Text style={styles.buttonText}>{content.button.continue}</Text>
                 </TouchableOpacity>
               </View>
             ) : null}

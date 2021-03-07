@@ -10,6 +10,7 @@
     "button": {
         "proceed": "Proceed",
         "continue": "Continue",
+        "confirm": "Confirm",
         "done": "Done",
         "cancel": "Cancel",
         "confirm_and_proceed": "Confirm & Proceed"
@@ -57,27 +58,36 @@
             }
         ]
     },
-    "wallet_setup" :{
+    "wallet_setup": {
         "new": "New Hexa Wallet",
         "first_time": "If this is your first time using Hexa on this device",
-        "create":"Create a new wallet",
+        "create": "Create a new wallet",
         "restore": "Restore Wallet",
-        "if_restore":"If you would like to restore an existing Hexa Wallet",
-        "using_recovery":"Using Recovery Keys",
+        "if_restore": "If you would like to restore an existing Hexa Wallet",
+        "using_recovery": "Using Recovery Keys",
         "please_enter_a": "Please enter a ",
-        "display_name":"display name.",
-        "your_contacts_will":"your contacts will see this",
-        "enter_display":"Enter display name",
-        "no_number":"No numbers or special characters allowed",
-        "we_do_not":"We do not store this",
-        "this_is_used_during":"This is used during communication with your contacts",
+        "display_name": "display name.",
+        "your_contacts_will": "your contacts will see this",
+        "enter_display": "Enter display name",
+        "no_number": "No numbers or special characters allowed",
+        "we_do_not": "We do not store this",
+        "this_is_used_during": "This is used during communication with your contacts",
         "setup": "Setup ",
-        "secret_question" : "secret question and answer",
+        "secret_question": "secret question and answer",
+        "remember": "(you need to remember this)",
+        "select_question": "Select question",
+        "enter_answer": "Enter your answer",
+        "confirm_answer": "Confirm your answer",
+        "choose_own_question": "Or choose your own question",
+        "answer_encrypt": "This answer is used to encrypt your wallet",
+        "extremely_important": "It is extremely important that only you",
+        "know_and_remember": " know and remember the answer",
+        "answers_dont": "Answers do not match",
+        "answers_validation": "Answers must only contain lowercase characters (a-z) and digits (0-9)",
         "setup_messages": [
             {
                 "heading": "Creating your wallet",
                 "text": "The Hexa wallet is non-custodial and is created locally on your phone so that you have full control of it"
-
             },
             {
                 "heading": "Bootstrapping Accounts",

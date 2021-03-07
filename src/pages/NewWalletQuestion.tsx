@@ -39,6 +39,7 @@ import { TEST_ACCOUNT } from '../common/constants/serviceTypes'
 import DeviceInfo from 'react-native-device-info'
 import { walletCheckIn } from '../store/actions/trustedContacts'
 import { setVersion } from '../store/actions/versionHistory'
+import content from '../common/content'
 
 // only admit lowercase letters and digits
 const ALLOWED_CHARACTERS_REGEXP = /^[0-9a-z]+$/
@@ -48,9 +49,9 @@ function validateAllowedCharacters( answer: string ): boolean {
 }
 
 export default function NewWalletQuestion( props ) {
-  const [ message, setMessage ] = useState( 'Creating your wallet' )
+  const [ message, setMessage ] = useState( content.wallet_setup.setup_messages[ 0 ].heading )
   const [ subTextMessage, setSubTextMessage ] = useState(
-    'The Hexa wallet is non-custodial and is created locally on your phone so that you have full control of it',
+    content.wallet_setup.setup_messages[ 0 ].text
   )
   const [ Elevation, setElevation ] = useState( 10 )
   const [ isLoaderStart, setIsLoaderStart ] = useState( false )
@@ -105,7 +106,7 @@ export default function NewWalletQuestion( props ) {
           answer,
         }
         dispatch( initializeSetup( walletName, security ) )
-        dispatch(setVersion('Current'));
+        dispatch( setVersion( 'Current' ) )
         const current = Date.now()
         await AsyncStorage.setItem(
           'SecurityAnsTimestamp',
@@ -141,12 +142,12 @@ export default function NewWalletQuestion( props ) {
     setConfirmAnswer( tempAns )
 
     if ( answer && confirmAnswer && confirmAnswer != answer ) {
-      setAnswerError( 'Answers do not match' )
+      setAnswerError( content.wallet_setup.answers_dont )
     } else if (
       validateAllowedCharacters( answer ) == false ||
       validateAllowedCharacters( tempAns ) == false
     ) {
-      setAnswerError( 'Answers must only contain lowercase characters (a-z) and digits (0-9)' )
+      setAnswerError( content.wallet_setup.answers_validation )
     } else {
       setTimeout( () => {
         setAnswerError( '' )
@@ -162,12 +163,12 @@ export default function NewWalletQuestion( props ) {
       setVisibleButton( false )
 
       if ( answer && confirmAnswer && confirmAnswer != answer ) {
-        setAnswerError( 'Answers do not match' )
+        setAnswerError( content.wallet_setup.answers_dont )
       } else if (
         validateAllowedCharacters( answer ) == false ||
         validateAllowedCharacters( confirmAnswer ) == false
       ) {
-        setAnswerError( 'Answers must only contain lowercase characters (a-z) and digits (0-9)' )
+        setAnswerError( content.wallet_setup.answers_validation )
       }
     }
   }, [ confirmAnswer ] )
@@ -193,7 +194,7 @@ export default function NewWalletQuestion( props ) {
         }}
       >
         {/* {!loading.initializing ? ( */}
-        <Text style={styles.buttonText}>Confirm</Text>
+        <Text style={styles.buttonText}>{content.button.confirm}</Text>
         {/* ) : (
           <ActivityIndicator size="small" />
         )} */}
@@ -203,20 +204,14 @@ export default function NewWalletQuestion( props ) {
 
   const seLoaderMessages = () => {
     setTimeout( () => {
-      setMessage( 'Bootstrapping Accounts' )
-      setSubTextMessage(
-        'Hexa has a multi-account model which lets you better manage your bitcoin (sats)',
-      )
+      setMessage( content.wallet_setup.setup_messages[ 1 ].heading )
+      setSubTextMessage( content.wallet_setup.setup_messages[ 1 ].text )
       setTimeout( () => {
-        setMessage( 'Filling Test Account with test sats' )
-        setSubTextMessage(
-          'Preloaded Test Account is the best place to start your Bitcoin journey',
-        )
+        setMessage( content.wallet_setup.setup_messages[ 2 ].heading )
+        setSubTextMessage( content.wallet_setup.setup_messages[ 2 ].text )
         setTimeout( () => {
-          setMessage( 'Generating Recovery Keys' )
-          setSubTextMessage(
-            'Recovery Keys help you restore your Hexa wallet in case your phone is lost',
-          )
+          setMessage( content.wallet_setup.setup_messages[ 3 ].heading )
+          setSubTextMessage( content.wallet_setup.setup_messages[ 3 ].text )
         }, 3000 )
       }, 3000 )
     }, 3000 )
@@ -290,11 +285,11 @@ export default function NewWalletQuestion( props ) {
               disabled={isDisabled}
             >
               <HeaderTitle
-                firstLineTitle={'New Hexa Wallet'}
+                firstLineTitle={content.wallet_setup.new}
                 secondLineTitle={''}
-                infoTextNormal={'Setup '}
-                infoTextBold={'Security Question and Answer'}
-                infoTextNormal1={'\n(you need to remember this)'}
+                infoTextNormal={content.wallet_setup.setup}
+                infoTextBold={content.wallet_setup.secret_question}
+                infoTextNormal1={`\n${content.wallet_setup.remember}`}
               />
 
               <TouchableOpacity
@@ -312,7 +307,7 @@ export default function NewWalletQuestion( props ) {
                 <Text style={styles.dropdownBoxText}>
                   {dropdownBoxValue.question
                     ? dropdownBoxValue.question
-                    : 'Select Question'}
+                    : content.wallet_setup.select_question}
                 </Text>
                 <Ionicons
                   style={{
@@ -390,7 +385,7 @@ export default function NewWalletQuestion( props ) {
                   >
                     <TextInput
                       style={styles.modalInputBox}
-                      placeholder={'Enter your answer'}
+                      placeholder={content.wallet_setup.enter_answer}
                       placeholderTextColor={Colors.borderColor}
                       value={hideShowAnswer ? answerMasked : answer}
                       autoCompleteType="off"
@@ -461,7 +456,7 @@ export default function NewWalletQuestion( props ) {
                     <TextInput
                       style={styles.modalInputBox}
                       ref={confirmAnswerTextInput}
-                      placeholder={'Confirm your answer'}
+                      placeholder={content.wallet_setup.confirm_answer}
                       placeholderTextColor={Colors.borderColor}
                       value={
                         hideShowConfirmAnswer ? confirmAnswerMasked : tempAns
@@ -523,9 +518,7 @@ export default function NewWalletQuestion( props ) {
                   </View>
 
                   {answerError.length == 0 && (
-                    <Text style={styles.helpText}>
-                      Answers must only contain lowercase characters (a-z) and digits (0-9).
-                    </Text>
+                    <Text style={styles.helpText}>{content.wallet_setup.answers_validation}</Text>
                   )}
                 </View>
               ) : (
@@ -581,52 +574,51 @@ export default function NewWalletQuestion( props ) {
                   } )
                 }
               >
-                Or choose your own question
+                {content.wallet_setup.choose_own_question}
               </Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
-        </KeyboardAvoidingView>
-        <View style={{
-          ...styles.bottomButtonView,
-        }}>
-          {(
-            answer.trim() == confirmAnswer.trim() &&
+      </KeyboardAvoidingView>
+      <View style={{
+        ...styles.bottomButtonView,
+      }}>
+        {(
+          answer.trim() == confirmAnswer.trim() &&
             confirmAnswer.trim() &&
             answer.trim() && answerError.length == 0
-          ) && (
-            setButtonVisible()
-          ) || null}
-          <View style={styles.statusIndicatorView}>
-            <View style={styles.statusIndicatorInactiveView} />
-            <View style={styles.statusIndicatorActiveView} />
-          </View>
+        ) && (
+          setButtonVisible()
+        ) || null}
+        <View style={styles.statusIndicatorView}>
+          <View style={styles.statusIndicatorInactiveView} />
+          <View style={styles.statusIndicatorActiveView} />
         </View>
-        
-        {!visibleButton ? (
-          <View
-            style={{
-              marginBottom:
+      </View>
+
+      {!visibleButton ? (
+        <View
+          style={{
+            marginBottom:
                 Platform.OS == 'ios' && DeviceInfo.hasNotch ? hp( '1%' ) : 0,
-            }}
-          >
-            <BottomInfoBox
-              title={'This answer is used to encrypt your wallet'}
-              infoText={'It is extremely important that only you'}
-              italicText={' know and remember the answer'}
-            />
-          </View>
-        ) : null}
-        <BottomSheet
-          onCloseEnd={() => { }}
-          enabledGestureInteraction={false}
-          enabledInnerScrolling={true}
-          ref={loaderBottomSheet}
-          snapPoints={[ -50, hp( '100%' ) ]}
-          renderContent={renderLoaderModalContent}
-          renderHeader={renderLoaderModalHeader}
-        />
-      
+          }}
+        >
+          <BottomInfoBox
+            title={content.wallet_setup.answer_encrypt}
+            infoText={content.wallet_setup.extremely_important}
+            italicText={content.wallet_setup.know_and_remember}          />
+        </View>
+      ) : null}
+      <BottomSheet
+        onCloseEnd={() => { }}
+        enabledGestureInteraction={false}
+        enabledInnerScrolling={true}
+        ref={loaderBottomSheet}
+        snapPoints={[ -50, hp( '100%' ) ]}
+        renderContent={renderLoaderModalContent}
+        renderHeader={renderLoaderModalHeader}
+      />
+
     </View>
   )
 }
