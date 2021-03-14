@@ -18,12 +18,15 @@ import PersonalNode from '../common/data/models/PersonalNode'
 import _ from 'lodash'
 class HexaConfig {
   //RAMP details
-  public RAMP_BASE_URL: string = Config.RAMP_BASE_URL || 'https://buy.ramp.network/'
-  public RAMP_REFERRAL_CODE: string = Config.RAMP_REFERRAL_CODE || 'ku67r7oh5juc27bmb3h5pek8y5heyb5bdtfa66pr'
+  public RAMP_BASE_URL: string = Config.RAMP_BASE_URL ? Config.RAMP_BASE_URL.trim() : 'https://buy.ramp.network/'
+  public RAMP_REFERRAL_CODE: string = Config.RAMP_REFERRAL_CODE ? Config.RAMP_REFERRAL_CODE.trim() : 'ku67r7oh5juc27bmb3h5pek8y5heyb5bdtfa66pr'
   //SWAN details
-  public SWAN_CLIENT_ID:string = Config.SWAN_CLIENT_ID || 'demo-web-client'
-  public SWAN_BASE_URL:string = Config.SWAN_AUTH_URL || 'https://dev-api.swanbitcoin.com'
-  public TESTNET_BASE_URL: string = Config.BIT_TESTNET_BASE_URL ? Config.BIT_TESTNET_BASE_URL.trim() : 'https://testapi.bithyve.com'
+  public SWAN_CLIENT_ID:string = Config.SWAN_CLIENT_ID ? Config.SWAN_CLIENT_ID.trim() : 'hexa-dev'
+  public SWAN_BASE_URL:string = Config.SWAN_AUTH_URL ? Config.SWAN_AUTH_URL.trim() : 'https://dev-api.swanbitcoin.com'
+  public WALLET_SLUG: string = Config.WALLET_SLUG ? Config.WALLET_SLUG.trim() : 'WALLET_SLUG'
+  public FBTC_REGISTRATION_URL: string = Config.FBTC_REGISTRATION_URL ? Config.FBTC_REGISTRATION_URL.trim() : 'https://fastbitcoins.com/create-account/hexa'
+  public FBTC_URL: string = Config.FBTC_URL ? Config.FBTC_URL.trim() : 'https://wallet-api.fastbitcoins.com/v2/'
+  public TESTNET_BASE_URL: string = Config.BIT_TESTNET_BASE_URL ? Config.BIT_TESTNET_BASE_URL.trim() : 'https://test-wrapper.bithyve.com'
   public MAINNET_BASE_URL: string = Config.BIT_MAINNET_BASE_URL ? Config.BIT_MAINNET_BASE_URL.trim() : 'https://api.bithyve.com'
   public VERSION: string = Config.VERSION ? Config.VERSION.trim() : '';
   public ENVIRONMENT: string;
@@ -43,7 +46,7 @@ class HexaConfig {
     keyLength: number;
   } = {
     algorithm: Config.BIT_CIPHER_ALGORITHM ? Config.BIT_CIPHER_ALGORITHM.trim() : 'aes-192-cbc',
-    salt: Config.BIT_CIPHER_SALT ? Config.BIT_CIPHER_SALT.trim() : '',
+    salt: Config.BIT_CIPHER_SALT ? Config.BIT_CIPHER_SALT.trim() : 'bithyeSalt',
     keyLength: Config.BIT_CIPHER_KEYLENGTH ? parseInt( Config.BIT_CIPHER_KEYLENGTH.trim(), 10 ) : 24,
     iv: Buffer.alloc( 16, 0 ),
   };
@@ -52,8 +55,8 @@ class HexaConfig {
   public LAST_SEEN_ACTIVE_DURATION: number = Config.BIT_LAST_SEEN_ACTIVE_DURATION ? parseInt( Config.BIT_LAST_SEEN_ACTIVE_DURATION.trim(), 10 ) : 21600;
   public LAST_SEEN_AWAY_DURATION: number = Config.BIT_LAST_SEEN_AWAY_DURATION ? parseInt( Config.BIT_LAST_SEEN_AWAY_DURATION.trim(), 10 ) : 64800;
   public BH_SERVERS = {
-    RELAY: Config.BIT_API_URLS_RELAY ? Config.BIT_API_URLS_RELAY.trim() : '',
-    SIGNING_SERVER: Config.BIT_API_URLS_SIGNING_SERVER ? Config.BIT_API_URLS_SIGNING_SERVER.trim() : '',
+    RELAY: Config.BIT_API_URLS_RELAY ? Config.BIT_API_URLS_RELAY.trim() : 'https://relay.bithyve.com/',
+    SIGNING_SERVER: Config.BIT_API_URLS_SIGNING_SERVER ? Config.BIT_API_URLS_SIGNING_SERVER.trim() : 'http://sign.bithyve.com/',
   };
   public BSI = {
     INIT_INDEX: Config.BIT_BSI_INIT_INDEX ? parseInt( Config.BIT_BSI_INIT_INDEX.trim(), 10 ) : 100,
@@ -69,8 +72,8 @@ class HexaConfig {
   public MSG_ID_LENGTH: number = Config.BIT_MSG_ID_LENGTH ? parseInt( Config.BIT_MSG_ID_LENGTH.trim(), 10 ) : 12;
   public CHUNK_SIZE: number = Config.BIT_CHUNK_SIZE ? parseInt( Config.BIT_CHUNK_SIZE.trim(), 10 ) : 3;
   public CHECKSUM_ITR: number = Config.BIT_CHECKSUM_ITR ? parseInt( Config.BIT_CHECKSUM_ITR.trim(), 10 ) : 2;
-  public HEXA_ID: string = Config.BIT_HEXA_ID.trim();
-  public ENC_KEY_STORAGE_IDENTIFIER: string = Config.ENC_KEY_STORAGE_IDENTIFIER.trim();
+  public HEXA_ID: string = Config.BIT_HEXA_ID ? Config.BIT_HEXA_ID.trim() : 'dfe56bf7922efec670a5a860995561da8d82c801ca14be4f194b440c5d741259';
+  public ENC_KEY_STORAGE_IDENTIFIER: string = Config.ENC_KEY_STORAGE_IDENTIFIER ? Config.ENC_KEY_STORAGE_IDENTIFIER.trim() : 'HEXA-KEY';
   public DPATH_PURPOSE: number = Config.BIT_DPATH_PURPOSE ? parseInt( Config.BIT_DPATH_PURPOSE.trim(), 10 ) : 49;
   public SSS_METASHARE_SPLITS: number = Config.BIT_SSS_METASHARE_SPLITS ? parseInt( Config.BIT_SSS_METASHARE_SPLITS.trim(), 10 ) : 8;
   public STATUS = {
@@ -106,7 +109,7 @@ class HexaConfig {
       SHARE_SLOT2: Config.BIT_SHARE_HEALTH_TIME_SLOT2 ? parseInt( Config.BIT_SHARE_HEALTH_TIME_SLOT2.trim(), 10 ) : 40320,
     },
   };
-
+  public NOTIFICATION_HOUR = Config.NOTIFICATION_HOUR ? parseInt( Config.NOTIFICATION_HOUR.trim(), 10 ) : 336
   public LEGACY_TC_REQUEST_EXPIRY = Config.BIT_LEGACY_TC_REQUEST_EXPIRY ? parseInt( Config.BIT_LEGACY_TC_REQUEST_EXPIRY.trim(), 10 ) : 1200000;
   public TC_REQUEST_EXPIRY = Config.BIT_TC_REQUEST_EXPIRY ? parseInt( Config.BIT_TC_REQUEST_EXPIRY.trim(), 10 ) : 86400000;
 
@@ -216,17 +219,11 @@ class HexaConfig {
   );
 
   constructor( env: string ) {
-    this.ENVIRONMENT = env || 'MAIN'
+    this.ENVIRONMENT = env.trim() || 'MAIN'
     this.RELAY = this.BH_SERVERS.RELAY
     this.SIGNING_SERVER = this.BH_SERVERS.SIGNING_SERVER
-    this.HEALTH_STATUS.TIME_SLOTS.SHARE_SLOT1 = parseInt(
-      Config.BIT_SHARE_HEALTH_TIME_SLOT1.trim(),
-      10,
-    )
-    this.HEALTH_STATUS.TIME_SLOTS.SHARE_SLOT2 = parseInt(
-      Config.BIT_SHARE_HEALTH_TIME_SLOT2.trim(),
-      10,
-    )
+    this.HEALTH_STATUS.TIME_SLOTS.SHARE_SLOT1 = Config.BIT_SHARE_HEALTH_TIME_SLOT1 ? parseInt( Config.BIT_SHARE_HEALTH_TIME_SLOT1.trim(), 10 ) : 20160
+    this.HEALTH_STATUS.TIME_SLOTS.SHARE_SLOT2 = Config.BIT_SHARE_HEALTH_TIME_SLOT2 ? parseInt( Config.BIT_SHARE_HEALTH_TIME_SLOT2.trim(), 10 ) : 40320
 
     this.setNetwork()
 
@@ -239,13 +236,10 @@ class HexaConfig {
       password: 'noUsed',
       host: 'notUsed',
     } )
-
-    if (
-      Config.BIT_SERVER_MODE.trim() === 'LOCAL' ||
-      Config.BIT_SERVER_MODE.trim() === 'DEV'
-    ) {
+    const BIT_SERVER_MODE = Config.BIT_SERVER_MODE ? Config.BIT_SERVER_MODE.trim() : 'PROD'
+    if ( BIT_SERVER_MODE === 'LOCAL' || BIT_SERVER_MODE === 'DEV' ) {
       this.APP_STAGE = 'dev'
-    } else if ( Config.BIT_SERVER_MODE.trim() === 'STA' ) {
+    } else if ( BIT_SERVER_MODE === 'STA' ) {
       this.APP_STAGE = 'sta'
     } else {
       this.APP_STAGE = 'app'
@@ -296,4 +290,4 @@ class HexaConfig {
   }
 }
 
-export default new HexaConfig( Config.BIT_ENVIRONMENT.trim() )
+export default new HexaConfig( Config.BIT_ENVIRONMENT || 'MAIN' )

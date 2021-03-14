@@ -21,12 +21,12 @@
     "log:processes": "lsof -i tcp:8081",
     "log:environment-info": "react-native info",
     "snapshot:environment-info": "yarn log:environment-info | pbcopy",
-    "androidDevelopmentDebug": "ENVFILE=.env.development react-native run-android --variant=developmentDebug --appIdSuffix=development",
-    "androidDevelopmentRelease": "ENVFILE=.env.development react-native run-android --variant=developmentRelease --appIdSuffix=development",
-    "androidStagingDebug": "ENVFILE=.env.staging react-native run-android --variant=stagingDebug --appIdSuffix=staging",
-    "androidStagingRelease": "ENVFILE=.env.staging react-native run-android --variant=stagingRelease --appIdSuffix=staging",
-    "androidProductionDebug": "ENVFILE=.env.production react-native run-android --variant=productionDebug",
-    "androidProductionRelease": "ENVFILE=.env.production react-native run-android --variant=productionRelease",
+    "androidDevelopmentDebug": "ENVFILE=.env react-native run-android --variant=developmentDebug --appIdSuffix=development",
+    "androidDevelopmentRelease": "ENVFILE=.env react-native run-android --variant=developmentRelease --appIdSuffix=development",
+    "androidStagingDebug": "ENVFILE=.env react-native run-android --variant=stagingDebug --appIdSuffix=staging",
+    "androidStagingRelease": "ENVFILE=.env react-native run-android --variant=stagingRelease --appIdSuffix=staging",
+    "androidProductionDebug": "ENVFILE=.env react-native run-android --variant=productionDebug",
+    "androidProductionRelease": "ENVFILE=.env react-native run-android --variant=productionRelease",
     "deep-clean": "yarn clear && yarn clean:watchman && yarn clean:node && yarn clean:ios && yarn clean:android && yarn install"
   },
   "xcodeSchemes": {

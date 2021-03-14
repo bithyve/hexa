@@ -1,11 +1,11 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, Alert } from 'react-native'
 import BottomInfoBox from '../../components/BottomInfoBox'
 import getFormattedStringFromQRString from '../../utils/qr-codes/GetFormattedStringFromQRData'
 import ListStyles from '../../common/Styles/ListStyles'
 import CoveredQRCodeScanner from '../../components/qr-code-scanning/CoveredQRCodeScanner'
 import RecipientAddressTextInputSection from '../../components/send/RecipientAddressTextInputSection'
-import { REGULAR_ACCOUNT } from '../../common/constants/serviceTypes'
+import { REGULAR_ACCOUNT, TEST_ACCOUNT } from '../../common/constants/serviceTypes'
 import AccountShell from '../../common/data/models/AccountShell'
 import SubAccountKind from '../../common/data/enums/SubAccountKind'
 import { useDispatch, useSelector } from 'react-redux'
@@ -15,6 +15,9 @@ import { Button } from 'react-native-elements'
 import ButtonStyles from '../../common/Styles/ButtonStyles'
 import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen'
 import { ScrollView } from 'react-native-gesture-handler'
+import Bitcoin from '../../bitcoin/utilities/accounts/Bitcoin'
+import { SATOSHIS_IN_BTC } from '../../common/constants/Bitcoin'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 // TODO: The patterns here are meant to be the starting point for the way other
 // other screens that render QRCode scanners should lay out their components and
@@ -39,17 +42,50 @@ const HomeQRScannerScreen: React.FC<Props> = ( { navigation, }: Props ) => {
   const accountShells: AccountShell[] = useSelector(
     ( state ) => state.accounts.accountShells,
   )
+  const accountsState = useSelector( ( state ) => state.accounts, )
+
   function handleBarcodeRecognized( { data: dataString }: { data: string } ) {
+    dispatch( clearTransfer( REGULAR_ACCOUNT ) )
+    const network = Bitcoin.networkType( dataString )
+    if ( network ) {
+      const serviceType =
+        network === 'MAINNET' ? REGULAR_ACCOUNT : TEST_ACCOUNT // default service type
+
+      const service = accountsState[ serviceType ].service
+      const { type } = service.addressDiff( dataString )
+
+      if ( type=='address' ) {
+        onSend( dataString, null, null )
+      } else if( type=='paymentURI' )  {
+        const res = service.decodePaymentURI( dataString )
+        const address = res.address
+        const options = res.options
+        let donationId = null
+        // checking for donationId to send note
+        if ( options && options.message ) {
+          const rawMessage = options.message
+          donationId = rawMessage.split( ':' ).pop().trim()
+        }
+
+        const bitcoinAmount= options.amount
+          ? `${Math.round( options.amount * SATOSHIS_IN_BTC )}`
+          : ''
+
+        onSend( address, bitcoinAmount, donationId )
+      }
+      return
+    }
+
     const onCodeScanned = navigation.getParam( 'onCodeScanned' )
     if ( typeof onCodeScanned === 'function' ) {
       const data = getFormattedStringFromQRString( dataString )
       onCodeScanned( data )
     }
 
-    navigation.goBack()
+    navigation.goBack( null )
   }
 
-  function onSend( address ) {
+  function onSend( address, bitcoinAmount, donationId ) {
     const item = {
       id: address,
     }
@@ -74,14 +110,25 @@ const HomeQRScannerScreen: React.FC<Props> = ( { navigation, }: Props ) => {
         selectedContact: item,
         serviceType: REGULAR_ACCOUNT,
         isFromAddressBook: true,
+        ...bitcoinAmount && {
+          bitcoinAmount
+        },
+        ...donationId && {
+          donationId
+        }
       } )
     )
-
   }
 
   return (
     <View style={styles.rootContainer}>
-      <ScrollView>
+      <KeyboardAwareScrollView
+        resetScrollToCoords={{
+          x: 0, y: 0
+        }}
+        scrollEnabled={false}
+        style={styles.rootContainer}
+      >
         <HeaderSection />
 
         <CoveredQRCodeScanner
@@ -99,7 +146,7 @@ const HomeQRScannerScreen: React.FC<Props> = ( { navigation, }: Props ) => {
             placeholder="Enter Address Manually"
             accountKind={REGULAR_ACCOUNT}
             onAddressSubmitted={( address ) => {
-              onSend( address )
+              onSend( address, null, null )
             }}
           />
         </View>
@@ -143,7 +190,7 @@ const HomeQRScannerScreen: React.FC<Props> = ( { navigation, }: Props ) => {
         "
           />
         </View>
-      </ScrollView>
+      </KeyboardAwareScrollView>
     </View>
   )
 }

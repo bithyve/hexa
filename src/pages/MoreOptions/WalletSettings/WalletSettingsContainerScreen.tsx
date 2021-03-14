@@ -54,11 +54,11 @@ const menuOptions: MenuOption[] = [
     imageSource: require( '../../../assets/images/icons/icon_versionhistory.png' ),
     screenName: 'VersionHistory',
   },
-  {
-    title: 'Hexa Release',
-    subtitle: versionString,
-    imageSource: require( '../../../assets/images/icons/settings.png' ),
-  },
+  // {
+  //   title: 'Hexa Release',
+  //   subtitle: versionString,
+  //   imageSource: require( '../../../assets/images/icons/settings.png' ),
+  // },
 ]
 
 

@@ -10,8 +10,9 @@ import {
 import Fonts from '../../common/Fonts'
 import {
   TouchableOpacity,
-} from '@gorhom/bottom-sheet';
+} from '@gorhom/bottom-sheet'
 import BottomInfoBox from '../BottomInfoBox'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 const ReceiveAmountContent = ( {
   title,
   message,
@@ -22,82 +23,84 @@ const ReceiveAmountContent = ( {
   const [ amount, setAmount ] = useState( selectedAmount )
 
   return (
-    <KeyboardAvoidingView
+    <KeyboardAwareScrollView
       style={{
-        height: '100%',
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white
       }}
-      behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
-      enabled
+      resetScrollToCoords={{
+        x: 0, y: 0
+      }}
     >
-    <View style={styles.modalContentContainer}>
-      <View style={{
-        flex: 1
-      }}>
-        <View style={styles.successModalHeaderView}>
-          <Text style={styles.modalTitleText}>{title}</Text>
-          <Text style={{
-            ...styles.modalInfoText, marginTop: wp( '1.5%' )
-          }}>{message}</Text>
-        </View>
-        <View style={styles.textBoxView}>
-          <View style={styles.amountInputImage}>
-            <Image
-              style={styles.textBoxImage}
-              source={require( '../../assets/images/icons/icon_bitcoin_gray.png' )}
+      <View style={styles.modalContentContainer}>
+        <View style={{
+          flex: 1
+        }}>
+          <View style={styles.successModalHeaderView}>
+            <Text style={styles.modalTitleText}>{title}</Text>
+            <Text style={{
+              ...styles.modalInfoText, marginTop: wp( '1.5%' )
+            }}>{message}</Text>
+          </View>
+          <View style={styles.textBoxView}>
+            <View style={styles.amountInputImage}>
+              <Image
+                style={styles.textBoxImage}
+                source={require( '../../assets/images/icons/icon_bitcoin_gray.png' )}
+              />
+            </View>
+            <TextInput
+              style={{
+                ...styles.textBox, paddingLeft: 10
+              }}
+              placeholder={'sats'}
+              value={amount}
+              returnKeyLabel="Done"
+              returnKeyType="done"
+              keyboardType={'numeric'}
+              onChangeText={( value ) => setAmount( value )}
+              placeholderTextColor={Colors.borderColor}
+              autoCorrect={false}
+              autoFocus={false}
+              autoCompleteType="off"
             />
           </View>
-          <TextInput
-            style={{
-              ...styles.textBox, paddingLeft: 10
-            }}
-            placeholder={'sats'}
-            value={amount}
-            returnKeyLabel="Done"
-            returnKeyType="done"
-            keyboardType={'numeric'}
-            onChangeText={( value ) => setAmount( value )}
-            placeholderTextColor={Colors.borderColor}
-            autoCorrect={false}
-            autoFocus={false}
-            autoCompleteType="off"
-          />
-        </View>
-        <View style={{ marginTop: 'auto',}}>
-        <BottomInfoBox
-          title="Note"
-          infoText="Enter an amount in sats and click the Receive button"
-        />
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            marginBottom: hp( '4%' ),
-          }}
-        >
-          <TouchableOpacity
-            onPress={() => {
-              onPressConfirm( amount )
-            }}
-            style={styles.successModalButtonView}
-          >
-            <Text style={styles.proceedButtonText}>Receive</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => onPressBack()}
-            style={styles.backButton}
-          >
-            <Text style={{
-              ...styles.proceedButtonText, color: Colors.blue
-            }}>
+          <View style={{
+            marginTop: 'auto',
+          }}>
+            <BottomInfoBox
+              title="Note"
+              infoText="Enter an amount in sats and click the Receive button"
+            />
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                marginBottom: hp( '4%' ),
+              }}
+            >
+              <TouchableOpacity
+                onPress={() => {
+                  onPressConfirm( amount )
+                }}
+                style={styles.successModalButtonView}
+              >
+                <Text style={styles.proceedButtonText}>Receive</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => onPressBack()}
+                style={styles.backButton}
+              >
+                <Text style={{
+                  ...styles.proceedButtonText, color: Colors.blue
+                }}>
             Back
-            </Text>
-          </TouchableOpacity>
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
       </View>
-      </View>
-    </View>
-    </KeyboardAvoidingView>
+    </KeyboardAwareScrollView>
   )
 }
 

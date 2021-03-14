@@ -87,7 +87,7 @@ const ReceiveQrScreen: React.FC<Props> = ( { navigation, }: Props ) => {
       />,
       {
         ...defaultBottomSheetConfigs,
-        snapPoints: [ 0, '65%' ],
+        snapPoints: [ 0, '50%' ],
         overlayOpacity: 0.9,
       },
     )

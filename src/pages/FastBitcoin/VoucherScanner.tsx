@@ -54,7 +54,7 @@ import {
   storeFbtcData,
   clearFbtcVoucher,
 } from '../../store/actions/fbtc'
-import Config from 'react-native-config'
+import config from '../../bitcoin/HexaConfig'
 import Loader from '../../components/loader'
 import Toast from '../../components/Toast'
 import moment from 'moment'
@@ -724,7 +724,7 @@ const VoucherScanner = ( props ) => {
     if ( fBTCAccountData && fBTCAccountData.user_key && bitcoinAddress ) {
       const data = {
         user_key: fBTCAccountData.user_key,
-        wallet_slug: Config.WALLET_SLUG,
+        wallet_slug: config.WALLET_SLUG,
         quote_type: 'voucher',
         quote_token: quoteData.quote_token,
         voucher_code: voucherFromAsync.voucher_code,
@@ -805,9 +805,9 @@ const VoucherScanner = ( props ) => {
   const renderAccountVerificationModalContent = useCallback( () => {
     return (
       <AccountVerification
-        link={Config.FBTC_REGISTRATION_URL}
+        link={config.FBTC_REGISTRATION_URL}
         openLinkVerification={() => {
-          Linking.openURL( Config.FBTC_REGISTRATION_URL )
+          Linking.openURL( config.FBTC_REGISTRATION_URL )
           props.navigation.goBack()
         }}
       />

@@ -40,12 +40,12 @@ export default function FastBitcoinCalculationModalContents( props ) {
     <View style={styles.modalContainer}>
       <View style={styles.modalHeaderTitleView}>
         <View style={{
-          flexDirection: 'row' 
+          flexDirection: 'row'
         }}>
           <TouchableOpacity
             onPress={() => props.onPressBack()}
             style={{
-              height: 30, width: 30 
+              height: 30, width: 30
             }}
           >
             <FontAwesome name="long-arrow-left" color={Colors.blue} size={17} />
@@ -61,7 +61,7 @@ export default function FastBitcoinCalculationModalContents( props ) {
       </View>
       <KeyboardAvoidingView
         style={{
-          flex: 1 
+          flex: 1
         }}
         behavior={Platform.OS == 'ios' ? 'padding' : ''}
         enabled
@@ -79,7 +79,7 @@ export default function FastBitcoinCalculationModalContents( props ) {
             <TextInput
               ref={refs => setVoucherCodeRef( refs )}
               style={{
-                ...styles.textBox, paddingLeft: 10 
+                ...styles.textBox, paddingLeft: 10
               }}
               placeholder={'Enter Voucher Code'}
               placeholderTextColor={Colors.borderColor}
@@ -121,7 +121,7 @@ export default function FastBitcoinCalculationModalContents( props ) {
             </Text>
             <Ionicons
               style={{
-                marginLeft: 'auto' 
+                marginLeft: 'auto'
               }}
               name={dropdownBoxOpenClose ? 'ios-arrow-up' : 'ios-arrow-down'}
               size={15}
@@ -129,7 +129,7 @@ export default function FastBitcoinCalculationModalContents( props ) {
             />
           </TouchableOpacity>
           <View style={{
-            position: 'relative', height: '100%' 
+            position: 'relative', height: '100%'
           }}>
             {dropdownBoxOpenClose && (
               <View style={styles.dropdownBoxModal}>
@@ -173,7 +173,7 @@ export default function FastBitcoinCalculationModalContents( props ) {
               </View>
             )}
             <View style={{
-              ...styles.textBoxView, marginTop: hp( '3%' ) 
+              ...styles.textBoxView, marginTop: hp( '3%' )
             }}>
               <View style={styles.amountInputImage}>
                 <Image
@@ -184,7 +184,7 @@ export default function FastBitcoinCalculationModalContents( props ) {
               <TextInput
                 ref={refs => setBitcoinAddressRef( refs )}
                 style={{
-                  ...styles.textBox, paddingLeft: 10 
+                  ...styles.textBox, paddingLeft: 10
                 }}
                 placeholder={'Enter Bitcoin Address'}
                 placeholderTextColor={Colors.borderColor}
@@ -205,7 +205,7 @@ export default function FastBitcoinCalculationModalContents( props ) {
         </ScrollView>
       </KeyboardAvoidingView>
       <View style={{
-        marginBottom: 20, marginTop: 'auto' 
+        marginBottom: 20, marginTop: 'auto'
       }}>
         <BottomInfoBox title={props.noteTitle} infoText={props.noteInfo} />
         <TouchableOpacity
@@ -309,7 +309,7 @@ const styles = StyleSheet.create( {
     shadowColor: Colors.shadowBlue,
     shadowOpacity: 10,
     shadowOffset: {
-      width: 0, height: 10 
+      width: 0, height: 10
     },
     backgroundColor: Colors.white,
     position: 'absolute',
@@ -347,7 +347,7 @@ const styles = StyleSheet.create( {
     shadowColor: Colors.borderColor,
     shadowOpacity: 10,
     shadowOffset: {
-      width: 2, height: 2 
+      width: 2, height: 2
     },
     backgroundColor: Colors.white,
     alignItems: 'center'

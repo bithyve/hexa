@@ -48,7 +48,6 @@ import Toast from '../../components/Toast'
 import PushNotification from 'react-native-push-notification'
 import NotificationListContent from '../../components/NotificationListContent'
 import { timeFormatter } from '../../common/CommonFunctions/timeFormatter'
-import Config from 'react-native-config'
 import RelayServices from '../../bitcoin/services/RelayService'
 import AddContactAddressBook from '../Contacts/AddContactAddressBook'
 import config from '../../bitcoin/HexaConfig'
@@ -541,7 +540,7 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
       ( created ) => console.log( `createChannel returned '${created}'` ) // (optional) callback returns whether the channel was created, false means it already existed.
     )
     const date = new Date()
-    date.setHours( date.getHours() + Number( Config.NOTIFICATION_HOUR ) )
+    date.setHours( date.getHours() + config.NOTIFICATION_HOUR )
 
     //let date =  new Date(Date.now() + (3 * 60 * 1000));
     PushNotification.localNotificationSchedule( {

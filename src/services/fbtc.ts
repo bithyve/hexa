@@ -1,12 +1,12 @@
 import axios from 'axios'
-import Config from 'react-native-config'
+import config from '../bitcoin/HexaConfig'
 
-const URL = Config.FBTC_URL
+const URL = config.FBTC_URL
 
 export const accountSync = ( data ) =>
   axios( {
     method: 'get',
-    url: URL + 'account-sync/' + Config.WALLET_SLUG + '/' + data.userKey, // wallet_slug/user_key',
+    url: URL + 'account-sync/' + config.WALLET_SLUG + '/' + data.userKey, // wallet_slug/user_key',
   } )
 
 export const getQuote = ( data ) =>
