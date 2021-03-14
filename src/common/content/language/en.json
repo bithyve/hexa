@@ -5,7 +5,14 @@
         "verify": "verify",
         "login": "login",
         "and": "and",
-        "passcode": "passcode"
+        "passcode": "passcode",
+        "account": "Account",
+        "test_account": "Test Account",
+        "learn_bitcoin": "Learn Bitcoin",
+        "checking_account": "Checking Account",
+        "fast_and_easy": "Fast and easy",
+        "savings_account": "Savings Account",
+        "multifactor": "Multi-factor security"
     },
     "button": {
         "proceed": "Proceed",
@@ -106,6 +113,8 @@
     "home": {
         "the_wallet_backup": "The wallet backup is ",
         "not_secured": "not secured!",
+        "great": "Great! Your wallet is ",
+        "secure": "secure!",
         "manage_backup": "Manage Backup",
         "add_new": "Add New",
         "buy": "Buy"
