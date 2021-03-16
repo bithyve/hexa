@@ -78,7 +78,7 @@ import PersonalNode from "../../common/data/models/PersonalNode";
 import { setCloudData, setCloudBackupStatus } from "../../store/actions/cloud";
 import ApproveSetup from "./ApproveSetup";
 import QRModal from "../Accounts/QRModal";
-
+import content from "../../common/content"
 interface ManageBackupNewBHRStateTypes {
   levelData: any[];
   selectedId: any;
@@ -184,27 +184,30 @@ class ManageBackupNewBHR extends Component<
       levelData: [
         {
           status: "notSetup",
-          infoGray: "Improve security by adding Keepers",
-          infoRed: "Keepers need your attention",
-          infoGreen: "All Keepers are accessible",
+          infoGray: content.backup.level1_message,
+          infoRed: content.backup.level1_warning,
+          infoGreen: content.backup.level1_good,
+          action: content.backup.level1_action,
           keeper1: obj,
           keeper2: obj,
           id: 1,
         },
         {
           status: "notSetup",
-          infoGray: "Improve security by adding Keepers",
-          infoRed: "Keepers need your attention",
-          infoGreen: "All Keepers are accessible",
+          infoGray: content.backup.level2_message,
+          infoRed: content.backup.level2_warning,
+          infoGreen: content.backup.level2_good,
+          action: content.backup.level2_action,
           keeper1: obj,
           keeper2: obj,
           id: 2,
         },
         {
           status: "notSetup",
-          infoGray: "Improve security by adding Keepers",
-          infoRed: "Keepers need your attention",
-          infoGreen: "All Keepers are accessible",
+          infoGray: content.backup.level3_message,
+          infoRed: content.backup.level3_warning,
+          infoGreen: content.backup.level3_good,
+          action: content.backup.level3_action,
           keeper1: obj,
           keeper2: obj,
           id: 3,
@@ -842,10 +845,10 @@ class ManageBackupNewBHR extends Component<
             </ImageBackground>
             <View style={styles.headerSeparator} />
             <View>
-              <Text style={styles.backupText}>Backup</Text>
-              <Text style={styles.backupInfoText}>Security is</Text>
+              <Text style={styles.backupText}>{content.backup.backup}</Text>
+              <Text style={styles.backupInfoText}>{content.backup.security_is}</Text>
               <Text style={styles.backupInfoText}>
-                at level {currentLevel ? currentLevel : ""}
+              {content.backup.at_level} {currentLevel ? currentLevel : ""}
               </Text>
             </View>
           </View>
@@ -939,7 +942,7 @@ class ManageBackupNewBHR extends Component<
                                   : Colors.white,
                             }}
                           >
-                            Know More
+                            {content.backup.know_more}
                           </Text>
                         </TouchableOpacity>
                       </View>
@@ -955,7 +958,7 @@ class ManageBackupNewBHR extends Component<
                                   : Colors.white,
                             }}
                           >
-                            Level {value.id}
+                            {content.backup.level} {value.id}
                           </Text>
                           <Text
                             style={{
@@ -995,7 +998,7 @@ class ManageBackupNewBHR extends Component<
                             }}
                             onPress={() => this.selectId(value.id)}
                           >
-                            {value.status == "notSetup" ? "Setup" : "Manage"}
+                            {value.status == "notSetup" ? content.backup.setup : content.backup.manage}
                           </Text>
                           <AntDesign
                             name={
@@ -1031,7 +1034,7 @@ class ManageBackupNewBHR extends Component<
                                 fontSize: RFValue(10),
                               }}
                             >
-                              Lorem ipsum dolor sit amet, consetetur
+                              {levelData[value.id-1].action}
                             </Text>
                           </View>
                           {value.id == 1 ? (
@@ -1074,8 +1077,8 @@ class ManageBackupNewBHR extends Component<
                                   }}
                                 >
                                   {value.keeper1.status == "accessible"
-                                    ? "Data Backed-Up"
-                                    : "Add Backup"}
+                                    ? content.backup.level1_button1_complete
+                                    : content.backup.level1_button1_not_complete}
                                 </Text>
                               </TouchableOpacity>
                               <TouchableOpacity
@@ -1131,7 +1134,7 @@ class ManageBackupNewBHR extends Component<
                                     fontSize: RFValue(11),
                                   }}
                                 >
-                                  Security Question
+                                  {content.backup.security_question}
                                 </Text>
                               </TouchableOpacity>
                             </View>
@@ -1218,8 +1221,8 @@ class ManageBackupNewBHR extends Component<
                                   (value.status == "bad" && value.keeper1.name)
                                     ? value.keeper1.name
                                     : value.id == 2
-                                    ? "Add Device Keeper"
-                                    : "Add Keeper"}
+                                    ? content.backup.level2_button1_not_complete
+                                    : content.backup.level2_button2}
                                 </Text>
                               </TouchableOpacity>
                               <TouchableOpacity
